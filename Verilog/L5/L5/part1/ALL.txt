@@ -1,0 +1,110 @@
+module part1(CLOCK_50,HEX0,HEX1,HEX2,HEX3);
+		
+		input	CLOCK_50;
+		output[6:0] HEX0,HEX1,HEX2,HEX3;
+		reg newClock;
+		reg[27:0] counter;
+		reg[1:0] Q;
+	
+		
+		
+		always @(posedge CLOCK_50)
+				begin
+			 
+					counter <= counter + 1;
+					if(counter == 25000000)
+					begin
+						newClock <= ~newClock;
+						counter <= 0;
+					end
+				end
+			
+		always @(posedge newClock) 
+			begin
+			Q <= Q + 1;
+			
+			end
+		
+			shifter_decoder S1(Q,HEX3,HEX2,HEX1,HEX0);
+			
+			
+				
+		 
+				
+		
+
+endmodule
+
+
+
+module shifter_decoder(a,h3,h2,h1,h0);
+
+		input[1:0] a;
+		output[6:0] h3,h2,h1,h0;
+		reg[1:0] h33,h22,h11,h00;
+		
+		always @*
+		case(a)
+		2'b00:
+		begin
+		h33 = 2'b00;
+		h22 = 2'b01;
+		h11 = 2'b11;
+		h00 = 2'b10;
+		end
+		2'b01:
+		begin
+		h33 = 2'b10;
+		h22 = 2'b00;
+		h11 = 2'b01;
+		h00 = 2'b11;
+		end
+		2'b10:
+		begin
+		h33 = 2'b11;
+		h22 = 2'b10;
+		h11 = 2'b00;
+		h00 = 2'b01;
+		end
+		2'b11:
+		begin
+		h33 = 2'b01;
+		h22 = 2'b11;
+		h11 = 2'b10;
+		h00 = 2'b00;
+		end
+		endcase
+		
+		hexto7segment H3(h33,h3);
+		hexto7segment H2(h22,h2);
+		hexto7segment H1(h11,h1);
+		hexto7segment H0(h00,h0);
+		
+		
+
+endmodule
+
+
+
+module hexto7segment(x,y);
+
+          input[1:0] x;
+			 reg[6:0] z;
+			 output[6:0] y;
+always @*
+case (x)
+2'b00 :      	//Hexadecimal P
+z = 7'b0001100;
+2'b01 :    		//Hexadecimal A
+z = 7'b0001000;
+2'b11 :  		// Hexadecimal S
+z = 7'b0010010; 
+2'b10 :  		// Hexadecimal S
+z = 7'b0010010; 
+endcase
+
+assign y = z;
+ 
+endmodule
+
+

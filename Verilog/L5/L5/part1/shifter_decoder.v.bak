@@ -1,0 +1,40 @@
+module shifter_decoder(a,h3,h2,h1,h0);
+
+		input[3:0] a;
+		output[6:0] h3,h2,h1,h0;
+		reg[1:0] h33,h22,h11,h0;
+		
+		always @*
+		case(a)
+		4'b0001:
+		begin
+		h33 = 2'b00;
+		h22 = 2'b01;
+		h11 = 2'b11;
+		h00 = 2'b10;
+		end
+		4'b0010:
+		begin
+		h33 = 2'b10;
+		h22 = 2'b00;
+		h11 = 2'b01;
+		h00 = 2'b11;
+		end
+		4'b0100:
+		begin
+		h33 = 2'b11;
+		h22 = 2'b10;
+		h11 = 2'b00;
+		h00 = 2'b01;
+		end
+		4'b1000:
+		begin
+		h33 = 2'b01;
+		h22 = 2'b11;
+		h11 = 2'b10;
+		h00 = 2'b00;
+		end
+		
+		
+
+endmodule

@@ -1,0 +1,4 @@
+Info (10281): Verilog HDL Declaration information at shifter_decoder.v(4): object "h3" differs only in case from object "H3" in the same scope
+Info (10281): Verilog HDL Declaration information at shifter_decoder.v(4): object "h2" differs only in case from object "H2" in the same scope
+Info (10281): Verilog HDL Declaration information at shifter_decoder.v(4): object "h1" differs only in case from object "H1" in the same scope
+Info (10281): Verilog HDL Declaration information at shifter_decoder.v(4): object "h0" differs only in case from object "H0" in the same scope
